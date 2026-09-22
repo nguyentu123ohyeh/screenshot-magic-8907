@@ -292,3 +292,123 @@
 @utility animate-float {
   animation: float-slow 7s ease-in-out infinite;
 }
+
+/* ========================================
+   PRODUCT IMAGES
+======================================== */
+
+/* Khung ảnh ở trang Products */
+.product-image-frame {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  background: #f7f7f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hiện FULL sản phẩm - không crop */
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  padding: 12px;
+  transition:
+    transform 0.45s ease,
+    filter 0.3s ease;
+}
+
+/* Hover nhẹ */
+.product-image-frame:hover .product-image {
+  transform: scale(1.035);
+}
+
+
+/* ========================================
+   PRODUCT DETAIL - MAIN IMAGE
+======================================== */
+
+.product-detail-image-frame {
+  width: 100%;
+  height: 520px;
+  overflow: hidden;
+  background: #f7f7f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  padding: 20px;
+}
+
+
+/* ========================================
+   GALLERY THUMBNAILS
+======================================== */
+
+.product-gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.35s ease;
+}
+
+.product-gallery-image:hover {
+  transform: scale(1.06);
+}
+
+
+/* ========================================
+   RELATED PRODUCTS
+======================================== */
+
+.related-product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  padding: 10px;
+  background: #f7f7f5;
+  transition: transform 0.4s ease;
+}
+
+.related-product-image:hover {
+  transform: scale(1.04);
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+  .product-image-frame {
+    height: 240px;
+  }
+
+  .product-detail-image-frame {
+    height: 420px;
+  }
+}
+
+.product-gallery-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  padding: 8px;
+  background: #f7f7f5;
+
+  transition: transform 0.4s ease;
+}
+
+.product-gallery-image:hover {
+  transform: scale(1.04);
+}

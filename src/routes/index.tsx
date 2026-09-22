@@ -18,6 +18,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { PlaceholderMedia } from "@/components/site/Placeholder";
 import { Counter } from "@/components/site/Counter";
+import { products } from "@/data/products";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -76,10 +77,10 @@ const advantages = [
 ];
 
 const stats = [
-  { value: "50+", label: "Product Categories" },
-  { value: "20+", label: "Global Markets" },
-  { value: "100%", label: "Business Focus" },
-  { value: "24/7", label: "Customer Support" },
+  { value: "B2B", label: "Business Model" },
+  { value: "OEM", label: "Custom Manufacturing Support" },
+  { value: "Global", label: "Sourcing Capability" },
+  { value: "End-to-End", label: "Supply Solutions" },
 ];
 
 const process = [
@@ -90,9 +91,10 @@ const process = [
 ];
 
 function HomePage() {
+  const featured = products.slice(0, 6);
+
   return (
     <>
-      {/* HERO */}
       <section className="gradient-navy relative overflow-hidden pt-36 pb-24 text-white md:pt-48 md:pb-32">
         <div className="bg-accent/15 absolute -top-40 -right-32 size-[30rem] rounded-full blur-3xl" />
         <div className="absolute -bottom-48 -left-24 size-[28rem] rounded-full bg-white/5 blur-3xl" />
@@ -125,12 +127,16 @@ function HomePage() {
           </Reveal>
 
           <Reveal delay={150} className="relative">
-            <div className="zoom-media relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/15 shadow-2xl">
-              <PlaceholderMedia label="Corporate hero visual" tone="navy" icon={Globe2} />
+            <div className="zoom-media relative w-[90%] aspect-[15/9] overflow-hidden rounded-2xl border border-white/15 shadow-2xl">
+              <img
+                src="/images/hero.png"
+                alt="HYPER FASHION BASE LLC corporate sourcing and global trade"
+                className="h-full w-full object-cover"
+              />
             </div>
             <div className="animate-float absolute -top-6 -left-6 hidden rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur md:block">
-              <Truck className="text-accent size-6" />
-              <p className="mt-2 text-xs font-semibold tracking-wide text-white">Supply Chain</p>
+              <Truck className="text-accent size-4" />
+              <p className="mt-1 text-xs font-semibold tracking-wide text-white">Supply Chain</p>
             </div>
             <div
               className="animate-float absolute -right-4 bottom-10 hidden rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur md:block"
@@ -150,11 +156,14 @@ function HomePage() {
         </div>
       </section>
 
-      {/* INTRODUCTION */}
       <Section>
         <div className="grid items-center gap-14 lg:grid-cols-2">
-          <Reveal className="zoom-media aspect-[5/4] overflow-hidden rounded-2xl">
-            <PlaceholderMedia label="Company operations" icon={PackageSearch} />
+          <Reveal className="zoom-media aspect-[5/4] overflow-hidden rounded-2xl shadow-card">
+            <img
+              src="/images/index.png"
+              alt="Solutions overview"
+              className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+            />
           </Reveal>
           <div>
             <SectionHeading
@@ -184,7 +193,6 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* WHY CHOOSE US */}
       <Section tone="muted">
         <SectionHeading
           eyebrow="Why Choose Us"
@@ -201,14 +209,12 @@ function HomePage() {
                 </span>
                 <h3 className="text-foreground mt-6 text-lg font-semibold">{item.title}</h3>
                 <p className="text-muted-foreground mt-3 text-sm leading-relaxed">{item.text}</p>
-                <span className="gradient-gold absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
               </article>
             </Reveal>
           ))}
         </div>
       </Section>
 
-      {/* STATISTICS */}
       <section className="gradient-navy py-20">
         <div className="container-page grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s, i) => (
@@ -219,37 +225,41 @@ function HomePage() {
         </div>
       </section>
 
-      {/* CATEGORIES */}
       <Section>
         <SectionHeading
           eyebrow="Main Product Categories"
           title="Two Core Supply Divisions"
-          description="From apparel programs to consumer technology, we manage sourcing across both categories under one contract."
+          description="From apparel programs to consumer technology, we manage sourcing across both categories under one commercial workflow."
           align="center"
         />
         <div className="mt-14 grid gap-8 lg:grid-cols-2">
           {[
             {
               title: "FASHION APPAREL",
-              icon: Shirt,
+              image: "/images/fabric.png",
               items: ["T-Shirts", "Hoodies", "Jackets", "Sportswear", "Accessories"],
             },
             {
               title: "TECHNOLOGY PRODUCTS",
-              icon: Cpu,
+              image: "/images/tech.png",
               items: [
-                "Smart Devices",
-                "Computer Accessories",
-                "Mobile Accessories",
-                "Electronics",
-              ],
-            },
+                  "Smart Devices",
+                  "Computer Accessories",
+                  "Mobile Accessories",
+                  "Electronics",
+                ],
+              },
           ].map((cat, i) => (
             <Reveal key={cat.title} delay={i * 120}>
-              <article className="card-premium zoom-media h-full">
-                <div className="h-56">
-                  <PlaceholderMedia label={`${cat.title} visual`} icon={cat.icon} />
+              <article className="card-premium zoom-media h-full overflow-hidden">
+                <div className="h-84 overflow-hidden">
+                  <img
+                    src={cat.image}
+                    alt={cat.title}
+                    className="h-full w-full object-contain bg-white transition-transform duration-500 hover:scale-105"
+                  />
                 </div>
+
                 <div className="p-8">
                   <h3 className="text-foreground text-xl font-bold tracking-[0.06em]">
                     {cat.title}
@@ -257,10 +267,7 @@ function HomePage() {
                   <span className="gold-rule mt-4" />
                   <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                     {cat.items.map((item) => (
-                      <li
-                        key={item}
-                        className="text-muted-foreground flex items-center gap-2 text-sm"
-                      >
+                      <li key={item} className="text-muted-foreground flex items-center gap-2 text-sm">
                         <span className="bg-accent size-1.5 rounded-full" />
                         {item}
                       </li>
@@ -276,8 +283,43 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* PROCESS */}
       <Section tone="muted">
+        <SectionHeading
+          eyebrow="Featured Products"
+          title="Selected Product Lines"
+          description="A snapshot of current catalogue items requested by wholesale buyers."
+          align="center"
+        />
+        <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {featured.map((product, index) => (
+            <Reveal key={product.slug} delay={(index % 6) * 60}>
+              <article className="card-premium h-full overflow-hidden">
+                <div className="h-52">
+                  <PlaceholderMedia
+                    label={`${product.name} placeholder`}
+                    icon={product.category === "Fashion" ? Shirt : Cpu}
+                  />
+                </div>
+                <div className="p-7">
+                  <span className="eyebrow">{product.category}</span>
+                  <h3 className="mt-3 text-xl font-semibold tracking-tight">{product.name}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{product.description}</p>
+                  <div className="mt-7 flex flex-wrap gap-3">
+                    <Link to="/products/$slug" params={{ slug: product.slug }} className="btn-base btn-navy">
+                      View Details
+                    </Link>
+                    <Link to="/contact" className="btn-base btn-outline-navy">
+                      Request Quote
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <Section>
         <SectionHeading
           eyebrow="Business Process"
           title="From Enquiry To Global Delivery"
@@ -300,7 +342,6 @@ function HomePage() {
         </div>
       </Section>
 
-      {/* CTA */}
       <section className="gradient-navy relative overflow-hidden py-20">
         <div className="bg-accent/15 absolute -top-24 left-1/3 size-80 rounded-full blur-3xl" />
         <div className="container-page relative flex flex-col items-center justify-between gap-8 text-center lg:flex-row lg:text-left">

@@ -33,7 +33,7 @@ export function Header() {
         <div className="container-page flex h-10 items-center justify-between text-xs">
           <span className="inline-flex items-center gap-2">
             <Globe2 className="text-accent size-3.5" />
-            International B2B supplier &middot; Mansfield, Texas, USA
+            International B2B supplier &middot; Fashion, Technology & Global Sourcing &middot; Mansfield, Texas, USA
           </span>
           <div className="flex items-center gap-6">
             <a
