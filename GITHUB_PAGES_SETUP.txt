@@ -1,0 +1,64 @@
+HYPER FASHION BASE LLC - GitHub Pages deployment
+
+Copy these files into the project:
+
+1) .github/workflows/deploy-pages.yml
+2) vite.config.ts                       (replace existing file)
+3) src/router.tsx                       (replace existing file)
+4) src/lib/asset-url.ts                 (new helper, for local public images)
+
+IMPORTANT FOR LOCAL IMAGES
+--------------------------
+GitHub Pages hosts this repository under:
+
+  /screenshot-magic-8907/
+
+So JSX such as:
+
+  <img src="/images/index.png" />
+
+may point to the wrong location on GitHub Pages.
+
+Use:
+
+  import { assetUrl } from "@/lib/asset-url";
+
+  <img src={assetUrl("images/index.png")} />
+
+Do this for local files inside public/images.
+
+External URLs such as:
+  https://m.media-amazon.com/...
+do NOT need to be changed.
+
+GITHUB SETTINGS
+---------------
+After pushing these files:
+
+GitHub repo
+-> Settings
+-> Pages
+-> Build and deployment
+-> Source
+-> GitHub Actions
+
+Then open the Actions tab and wait for:
+  Deploy to GitHub Pages
+
+LOCAL TEST
+----------
+npm run build
+
+The build should create:
+  .output/public/_shell.html
+
+If that file exists, the workflow can deploy it.
+
+PUSH
+----
+git add .
+git commit -m "Configure GitHub Pages deployment"
+git push origin main
+
+Expected Pages URL:
+https://nguyentu123ohyeh.github.io/screenshot-magic-8907/
