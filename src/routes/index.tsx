@@ -294,21 +294,46 @@ function HomePage() {
           {featured.map((product, index) => (
             <Reveal key={product.slug} delay={(index % 6) * 60}>
               <article className="card-premium h-full overflow-hidden">
-                <div className="h-52">
-                  <PlaceholderMedia
-                    label={`${product.name} placeholder`}
-                    icon={product.category === "Fashion" ? Shirt : Cpu}
-                  />
+                <div className="h-56 overflow-hidden bg-background">
+                  {product.image ? (
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      loading="lazy"
+                      className="h-full w-full object-contain transition-transform duration-500 hover:scale-105"
+                    />
+                  ) : (
+                    <PlaceholderMedia
+                      label={`${product.name} placeholder`}
+                      icon={product.category === "Fashion" ? Shirt : Cpu}
+                    />
+                  )}
                 </div>
+
                 <div className="p-7">
                   <span className="eyebrow">{product.category}</span>
-                  <h3 className="mt-3 text-xl font-semibold tracking-tight">{product.name}</h3>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{product.description}</p>
+
+                  <h3 className="mt-3 text-xl font-semibold tracking-tight line-clamp-2">
+                    {product.name}
+                  </h3>
+
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground line-clamp-3">
+                    {product.description}
+                  </p>
+
                   <div className="mt-7 flex flex-wrap gap-3">
-                    <Link to="/products/$slug" params={{ slug: product.slug }} className="btn-base btn-navy">
+                    <Link
+                      to="/products/$slug"
+                      params={{ slug: product.slug }}
+                      className="btn-base btn-navy"
+                    >
                       View Details
                     </Link>
-                    <Link to="/contact" className="btn-base btn-outline-navy">
+
+                    <Link
+                      to="/contact"
+                      className="btn-base btn-outline-navy"
+                    >
                       Request Quote
                     </Link>
                   </div>
